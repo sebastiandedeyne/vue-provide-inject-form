@@ -1,28 +1,48 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <v-form
+      :values="{ name: 'Sebastian' }"
+      @submit="submit"
+    >
+      <v-field name="name">
+        <template slot-scope="{ value, update }">
+          <input
+            :value="value"
+            @input="update($event.target.value)"
+          >
+        </template>
+      </v-field>
+      <v-field name="name">
+        <template slot-scope="{ value, update }">
+          <input
+            :value="value"
+            @input="update($event.target.value)"
+          >
+        </template>
+      </v-field>
+      <button type="Submit">
+        Submit
+      </button>
+    </v-form>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import VForm from "./components/VForm";
+import VField from "./components/VField";
 
 export default {
-  name: 'app',
-  components: {
-    HelloWorld
-  }
-}
-</script>
+  name: "app",
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+  components: {
+    VForm,
+    VField
+  },
+
+  methods: {
+    submit(values) {
+      console.log(values);
+    }
+  }
+};
+</script>
